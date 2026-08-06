@@ -17,3 +17,15 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    def __init__(self, question):
+        self.question = question
+
+quiz1 = Quiz("질문 1")
+quiz2 = Quiz("질문 2")
+
+print(quiz1.question)
+print(quiz2.question)
+quiz1.question = "질문 1 수정"
+print(quiz1.question)
+print(quiz2.question)
