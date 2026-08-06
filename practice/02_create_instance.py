@@ -17,3 +17,13 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    pass
+
+quiz1 = Quiz()
+quiz2 = Quiz()
+
+print(quiz1)
+print(quiz2)
+print(quiz1 is quiz2)
+assert quiz1 is not quiz2 # 지금은 True지만, False면 AssertionError를 내놓는다고 함.
