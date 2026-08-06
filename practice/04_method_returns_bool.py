@@ -18,3 +18,13 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    def __init__(self, answer):
+        self.answer = answer
+
+    def is_correct(self, selected):
+        return selected == self.answer
+
+quiz = Quiz("정답")
+assert quiz.is_correct("정답") is True
+assert quiz.is_correct("오답") is False
