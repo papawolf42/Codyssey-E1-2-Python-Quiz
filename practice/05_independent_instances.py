@@ -21,3 +21,15 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    def __init__(self, answer):
+        self.answer = answer
+
+    def is_correct(self, selected):
+        return self.answer == selected
+
+quiz1 = Quiz(1)
+quiz2 = Quiz(2)
+
+print(quiz1.is_correct(2))
+print(quiz2.is_correct(2))
