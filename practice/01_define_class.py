@@ -18,3 +18,7 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    pass
+
+print(Quiz)
