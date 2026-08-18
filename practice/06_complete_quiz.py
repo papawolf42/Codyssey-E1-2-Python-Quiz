@@ -28,3 +28,19 @@
 """
 
 # 이 아래에 직접 작성하세요.
+class Quiz:
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices = choices
+        self.answer = answer
+
+
+quiz = Quiz(
+    "Python에서 리스트를 만드는 기호는?",
+    ["()", "[]", "{}", "<>"],
+    2,
+)
+
+print(quiz.question)
+print(quiz.choices)
+print(quiz.answer)
