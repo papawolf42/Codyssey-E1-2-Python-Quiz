@@ -1,7 +1,7 @@
 from quiz import Quiz
 
 
-def read_number(prompt, minimum, maximum):
+def read_number(prompt, min, max):
     while True:
         user_input = input(prompt).strip()
 
@@ -10,15 +10,15 @@ def read_number(prompt, minimum, maximum):
             continue
 
         try:
-            number = int(user_input)
+            num = int(user_input)
         except ValueError:
             print("숫자를 입력해주세요.")
             continue
 
-        if minimum <= number <= maximum:
-            return number
+        if min <= num <= max:
+            return num
 
-        print(f"{minimum}부터 {maximum} 사이의 숫자를 입력해주세요.")
+        print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
 
 
 DEFAULT_QUIZZES = [
@@ -105,19 +105,57 @@ class QuizGame:
         print("4. 점수 확인")
         print("5. 종료")
 
+    def play(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        score = 0
+
+        for number, quiz in enumerate(self.quizzes, start=1):
+            print("\n" + "=" * 60)
+            print(f"문제 {number} / {len(self.quizzes)}")
+            print("=" * 60)
+            quiz.show()
+
+            user_answer = read_number("\n정답을 입력하세요: ", 1, 4)
+
+            if quiz.is_correct(user_answer):
+                print("\n[정답] 맞았습니다!")
+                score += 1
+            else:
+                print("\n[오답] 틀렸습니다.")
+                print(f"정답은 {quiz.answer}번입니다.")
+                print(f"\n{quiz.answer}. {quiz.choices[quiz.answer - 1]}")
+
+        print("\n" + "=" * 60)
+        print(f"결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
+        print("=" * 60)
+
+        if self.best_score is None or score > self.best_score:
+            self.best_score = score
+            print("새로운 최고 점수입니다!")
+
+    def show_score(self):
+        if self.best_score is None:
+            print("아직 퀴즈를 풀지 않았습니다.")
+            return
+
+        print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
+
     def run(self):
         while True:
             self.show_menu()
-            menu_number = read_number("메뉴를 선택하세요: ", 1, 5)
+            choice = read_number("메뉴를 선택하세요: ", 1, 5)
 
-            if menu_number == 1:
-                print("퀴즈 풀기 기능은 다음 단계에서 구현합니다.")
-            elif menu_number == 2:
-                print("퀴즈 추가 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 3:
-                print("퀴즈 목록 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 4:
-                print("점수 확인 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 5:
+            if choice == 1:
+                self.play()
+            elif choice == 2:
+                pass
+            elif choice == 3:
+                pass
+            elif choice == 4:
+                self.show_score()
+            elif choice == 5:
                 print("퀴즈 게임을 종료합니다.")
                 break
