@@ -1,17 +1,15 @@
-from quiz import Quiz
+from quiz_game import QuizGame
 
 
 def main():
-    quiz = Quiz(
-        "Python에서 리스트를 만드는 기호는?",
-        ["()", "[]", "{}", "<>"],
-        2,
-    )
+    game = QuizGame()
 
-    quiz.show()
+    print("기본 퀴즈 수:", len(game.quizzes))
+    print("최고 점수:", game.best_score)
 
-    print("답은 2!:", quiz.is_correct(2))
-    print("답은 1!:", quiz.is_correct(1))
+    for number, quiz in enumerate(game.quizzes, start=1):
+        print(f"\n문제 {number}")
+        quiz.show()
 
 
 if __name__ == "__main__":
