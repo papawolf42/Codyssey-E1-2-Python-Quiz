@@ -113,19 +113,24 @@ class QuizGame:
         score = 0
 
         for number, quiz in enumerate(self.quizzes, start=1):
-            print(f"\n문제 {number}")
+            print("\n" + "=" * 60)
+            print(f"문제 {number} / {len(self.quizzes)}")
+            print("=" * 60)
             quiz.show()
 
-            user_answer = read_number("정답을 입력하세요: ", 1, 4)
+            user_answer = read_number("\n정답을 입력하세요: ", 1, 4)
 
             if quiz.is_correct(user_answer):
-                print("정답입니다!")
+                print("\n[정답] 맞았습니다!")
                 score += 1
             else:
-                print(f"오답입니다. 정답은 {quiz.answer}번입니다.")
-                print(quiz.choices[quiz.answer - 1])
+                print("\n[오답] 틀렸습니다.")
+                print(f"정답은 {quiz.answer}번입니다.")
+                print(f"\n{quiz.answer}. {quiz.choices[quiz.answer - 1]}")
 
-        print(f"\n결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
+        print("\n" + "=" * 60)
+        print(f"결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
+        print("=" * 60)
 
     def run(self):
         while True:
