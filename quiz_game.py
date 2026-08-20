@@ -132,6 +132,17 @@ class QuizGame:
         print(f"결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
         print("=" * 60)
 
+        if self.best_score is None or score > self.best_score:
+            self.best_score = score
+            print("새로운 최고 점수입니다!")
+
+    def show_score(self):
+        if self.best_score is None:
+            print("아직 퀴즈를 풀지 않았습니다.")
+            return
+
+        print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
+
     def run(self):
         while True:
             self.show_menu()
@@ -144,7 +155,7 @@ class QuizGame:
             elif choice == 3:
                 pass
             elif choice == 4:
-                pass
+                self.show_score()
             elif choice == 5:
                 print("퀴즈 게임을 종료합니다.")
                 break
