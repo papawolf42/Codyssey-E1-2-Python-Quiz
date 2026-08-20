@@ -21,7 +21,7 @@ def read_number(prompt, min, max):
         print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
 
 
-def read_text(prompt):
+def read_line(prompt):
     while True:
         text = input(prompt).strip()
 
@@ -146,20 +146,13 @@ class QuizGame:
             self.best_score = score
             print("새로운 최고 점수입니다!")
 
-    def show_score(self):
-        if self.best_score is None:
-            print("아직 퀴즈를 풀지 않았습니다.")
-            return
-
-        print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
-
     def add_quiz(self):
         print("\n=== 새 퀴즈 추가 ===")
-        question = read_text("문제를 입력하세요: ")
+        question = read_line("문제를 입력하세요: ")
         choices = []
 
         for number in range(1, 5):
-            choice = read_text(f"{number}번 선택지를 입력하세요: ")
+            choice = read_line(f"{number}번 선택지를 입력하세요: ")
             choices.append(choice)
 
         answer = read_number("정답 번호를 입력하세요: ", 1, 4)
@@ -167,6 +160,13 @@ class QuizGame:
         self.quizzes.append(quiz)
 
         print("새 퀴즈를 추가했습니다.")
+
+    def show_score(self):
+        if self.best_score is None:
+            print("아직 퀴즈를 풀지 않았습니다.")
+            return
+
+        print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
 
     def run(self):
         while True:
