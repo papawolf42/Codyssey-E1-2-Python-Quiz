@@ -1,6 +1,26 @@
 from quiz import Quiz
 
 
+def read_number(prompt, minimum, maximum):
+    while True:
+        user_input = input(prompt).strip()
+
+        if user_input == "":
+            print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
+            continue
+
+        try:
+            number = int(user_input)
+        except ValueError:
+            print("숫자를 입력해주세요.")
+            continue
+
+        if minimum <= number <= maximum:
+            return number
+
+        print(f"{minimum}부터 {maximum} 사이의 숫자를 입력해주세요.")
+
+
 DEFAULT_QUIZZES = [
     {
         "question": "빌 게이츠의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
@@ -76,3 +96,28 @@ class QuizGame:
             quizzes.append(quiz)
 
         return quizzes
+
+    def show_menu(self):
+        print("\n=== 명언 퀴즈 ===")
+        print("1. 퀴즈 풀기")
+        print("2. 퀴즈 추가")
+        print("3. 퀴즈 목록")
+        print("4. 점수 확인")
+        print("5. 종료")
+
+    def run(self):
+        while True:
+            self.show_menu()
+            menu_number = read_number("메뉴를 선택하세요: ", 1, 5)
+
+            if menu_number == 1:
+                print("퀴즈 풀기 기능은 다음 단계에서 구현합니다.")
+            elif menu_number == 2:
+                print("퀴즈 추가 기능은 아직 구현되지 않았습니다.")
+            elif menu_number == 3:
+                print("퀴즈 목록 기능은 아직 구현되지 않았습니다.")
+            elif menu_number == 4:
+                print("점수 확인 기능은 아직 구현되지 않았습니다.")
+            elif menu_number == 5:
+                print("퀴즈 게임을 종료합니다.")
+                break
