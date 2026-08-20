@@ -105,19 +105,41 @@ class QuizGame:
         print("4. 점수 확인")
         print("5. 종료")
 
+    def play(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        score = 0
+
+        for number, quiz in enumerate(self.quizzes, start=1):
+            print(f"\n문제 {number}")
+            quiz.show()
+
+            user_answer = read_number("정답을 입력하세요: ", 1, 4)
+
+            if quiz.is_correct(user_answer):
+                print("정답입니다!")
+                score += 1
+            else:
+                print(f"오답입니다. 정답은 {quiz.answer}번입니다.")
+                print(quiz.choices[quiz.answer - 1])
+
+        print(f"\n결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
+
     def run(self):
         while True:
             self.show_menu()
-            menu_number = read_number("메뉴를 선택하세요: ", 1, 5)
+            choice = read_number("메뉴를 선택하세요: ", 1, 5)
 
-            if menu_number == 1:
-                print("퀴즈 풀기 기능은 다음 단계에서 구현합니다.")
-            elif menu_number == 2:
-                print("퀴즈 추가 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 3:
-                print("퀴즈 목록 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 4:
-                print("점수 확인 기능은 아직 구현되지 않았습니다.")
-            elif menu_number == 5:
+            if choice == 1:
+                self.play()
+            elif choice == 2:
+                pass
+            elif choice == 3:
+                pass
+            elif choice == 4:
+                pass
+            elif choice == 5:
                 print("퀴즈 게임을 종료합니다.")
                 break
