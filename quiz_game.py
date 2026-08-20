@@ -1,7 +1,7 @@
 from quiz import Quiz
 
 
-def read_number(prompt, minimum, maximum):
+def read_number(prompt, min, max):
     while True:
         user_input = input(prompt).strip()
 
@@ -10,15 +10,15 @@ def read_number(prompt, minimum, maximum):
             continue
 
         try:
-            number = int(user_input)
+            num = int(user_input)
         except ValueError:
             print("숫자를 입력해주세요.")
             continue
 
-        if minimum <= number <= maximum:
-            return number
+        if min <= num <= max:
+            return num
 
-        print(f"{minimum}부터 {maximum} 사이의 숫자를 입력해주세요.")
+        print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
 
 
 DEFAULT_QUIZZES = [
