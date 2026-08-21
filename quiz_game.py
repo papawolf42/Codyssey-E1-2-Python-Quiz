@@ -1,36 +1,6 @@
 from quiz import Quiz
 
 
-def read_number(prompt, min, max):
-    while True:
-        user_input = input(prompt).strip()
-
-        if user_input == "":
-            print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
-            continue
-
-        try:
-            num = int(user_input)
-        except ValueError:
-            print("숫자를 입력해주세요.")
-            continue
-
-        if min <= num <= max:
-            return num
-
-        print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
-
-
-def read_line(prompt):
-    while True:
-        text = input(prompt).strip()
-
-        if text != "":
-            return text
-
-        print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
-
-
 DEFAULT_QUIZZES = [
     {
         "question": "빌 게이츠의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
@@ -94,6 +64,36 @@ class QuizGame:
         self.quizzes = self.create_default_quizzes()
         self.best_score = None
 
+    @staticmethod
+    def read_number(prompt, min, max):
+        while True:
+            user_input = input(prompt).strip()
+
+            if user_input == "":
+                print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
+                continue
+
+            try:
+                num = int(user_input)
+            except ValueError:
+                print("숫자를 입력해주세요.")
+                continue
+
+            if min <= num <= max:
+                return num
+
+            print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
+
+    @staticmethod
+    def read_line(prompt):
+        while True:
+            text = input(prompt).strip()
+
+            if text != "":
+                return text
+
+            print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
+
     def create_default_quizzes(self):
         quizzes = []
 
@@ -128,7 +128,7 @@ class QuizGame:
             print("=" * 60)
             quiz.show()
 
-            user_answer = read_number("\n정답을 입력하세요: ", 1, 4)
+            user_answer = self.read_number("\n정답을 입력하세요: ", 1, 4)
 
             if quiz.is_correct(user_answer):
                 print("\n[정답] 맞았습니다!")
@@ -148,14 +148,14 @@ class QuizGame:
 
     def add_quiz(self):
         print("\n=== 새 퀴즈 추가 ===")
-        question = read_line("문제를 입력하세요: ")
+        question = self.read_line("문제를 입력하세요: ")
         choices = []
 
         for num in range(1, 5):
-            choice = read_line(f"{num}번 선택지를 입력하세요: ")
+            choice = self.read_line(f"{num}번 선택지를 입력하세요: ")
             choices.append(choice)
 
-        answer = read_number("정답 번호를 입력하세요: ", 1, 4)
+        answer = self.read_number("정답 번호를 입력하세요: ", 1, 4)
         quiz = Quiz(question, choices, answer)
         self.quizzes.append(quiz)
 
@@ -184,7 +184,7 @@ class QuizGame:
     def run(self):
         while True:
             self.show_menu()
-            choice = read_number("메뉴를 선택하세요: ", 1, 5)
+            choice = self.read_number("메뉴를 선택하세요: ", 1, 5)
 
             if choice == 1:
                 self.play()
