@@ -63,8 +63,9 @@ DEFAULT_QUIZZES = [
 
 class QuizGame:
     def __init__(self):
-        self.quizzes = self.create_default_quizzes()
+        self.quizzes = []
         self.best_score = None
+        self.load_state()
 
     @staticmethod
     def read_number(prompt, min, max):
@@ -108,6 +109,27 @@ class QuizGame:
             quizzes.append(quiz)
 
         return quizzes
+
+    def load_state(self):
+        try:
+            with open("state.json", "r", encoding="utf-8") as file:
+                state = json.load(file)
+        except FileNotFoundError:
+            self.quizzes = self.create_default_quizzes()
+            return
+
+        quizzes = []
+
+        for quiz_data in state["quizzes"]:
+            quiz = Quiz(
+                quiz_data["question"],
+                quiz_data["choices"],
+                quiz_data["answer"],
+            )
+            quizzes.append(quiz)
+
+        self.quizzes = quizzes
+        self.best_score = state["best_score"]
 
     def save_state(self):
         quizzes_data = []
