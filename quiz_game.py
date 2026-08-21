@@ -1,3 +1,5 @@
+import json
+
 from quiz import Quiz
 
 
@@ -107,6 +109,25 @@ class QuizGame:
 
         return quizzes
 
+    def save_state(self):
+        quizzes_data = []
+
+        for quiz in self.quizzes:
+            quiz_data = {
+                "question": quiz.question,
+                "choices": quiz.choices,
+                "answer": quiz.answer,
+            }
+            quizzes_data.append(quiz_data)
+
+        state = {
+            "quizzes": quizzes_data,
+            "best_score": self.best_score,
+        }
+
+        with open("state.json", "w", encoding="utf-8") as file:
+            json.dump(state, file, ensure_ascii=False, indent=4)
+
     def show_menu(self):
         print("\n=== 명언 퀴즈 ===")
         print("1. 퀴즈 풀기")
@@ -146,6 +167,8 @@ class QuizGame:
             self.best_score = score
             print("새로운 최고 점수입니다!")
 
+        self.save_state()
+
     def add_quiz(self):
         print("\n=== 새 퀴즈 추가 ===")
         question = self.read_line("문제를 입력하세요: ")
@@ -158,6 +181,7 @@ class QuizGame:
         answer = self.read_number("정답 번호를 입력하세요: ", 1, 4)
         quiz = Quiz(question, choices, answer)
         self.quizzes.append(quiz)
+        self.save_state()
 
         print("새 퀴즈를 추가했습니다.")
 

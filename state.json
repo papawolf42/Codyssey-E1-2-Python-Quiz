@@ -1,0 +1,55 @@
+{
+    "quizzes": [
+        {
+            "question": "빌 게이츠의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
+            "choices": [
+                "Standards are great, which is why we have so many of them.\n   (표준은 정말 훌륭하다. 그래서 세상에 표준이 그렇게나 넘쳐나는 것이다.)",
+                "C++ is a horrible language.\n   (C++은 끔찍한 언어다.)",
+                "I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.\n   (나는 힘든 일을 맡길 때 게으른 사람을 선택한다. 왜냐하면 게으른 사람은 그 일을 해낼 가장 쉬운 방법을 찾아내기 때문이다.)",
+                "Bad programmers worry about the code. Good programmers worry about data structures.\n   (나쁜 프로그래머는 코드를 걱정하고, 좋은 프로그래머는 데이터 구조를 걱정한다.)"
+            ],
+            "answer": 3
+        },
+        {
+            "question": "스티브 잡스의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
+            "choices": [
+                "I am a bastard. I have no empathy.\n   (나는 나쁜 놈이다. 나한테는 공감 능력이 없다.)",
+                "I am broad-minded, but I don't compromise on garbage.\n   (나는 마음이 넓은 편이지만, 쓰레기 같은 코드와는 타협하지 않는다.)",
+                "My name is Linus, and I am your God.\n   (내 이름은 리누스, 그리고 내가 바로 너희들의 신이다.)",
+                "Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple.\n   (단순한 것은 복잡한 것보다 더 어려울 수 있다. 생각을 명쾌하게 정리해 단순하게 만들려면 엄청난 노력이 필요하다.)"
+            ],
+            "answer": 4
+        },
+        {
+            "question": "일론 머스크의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
+            "choices": [
+                "If something is important enough, even if the odds are against you, you should still do it.\n   (어떤 일이 충분히 중요하다면, 승산이 없더라도 일단 실행해야 한다.)",
+                "Theory and practice sometimes clash. And when that happens, theory is wrong.\n   (이론과 실전은 가끔 충돌한다. 그럴 때 틀린 건 바로 이론이다.)",
+                "I am a lazy bastard, but I am proud of it.\n   (나는 게으른 놈이지만, 그 점이 자랑스럽다.)",
+                "Good code is its own best documentation.\n   (좋은 코드는 그 자체로 최고의 문서다.)"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "마크 저커버그의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
+            "choices": [
+                "I do not care about open source as an ideology. I care about open source because it leads to better code.\n   (나는 이념으로서의 오픈소스에는 관심 없다. 더 좋은 코드로 이어지기 때문에 오픈소스에 관심이 있을 뿐이다.)",
+                "Move fast and break things. Unless you are breaking stuff, you are not moving fast enough.\n   (빠르게 움직이고 부숴라. 무언가를 깨뜨리지 않고 있다면, 충분히 빠르게 나아가지 못하고 있는 것이다.)",
+                "I started Linux because I couldn't afford a real Unix machine.\n   (진짜 유닉스 컴퓨터를 살 돈이 없어서 리눅스를 만들기 시작했다.)",
+                "Most good programmers do programming because it is fun.\n   (대부분의 뛰어난 프로그래머들은 재미있어서 프로그래밍을 한다.)"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "알베르트 아인슈타인의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
+            "choices": [
+                "Intelligence is the ability to avoid doing work, but have the work get done anyway.\n   (지능이란 일은 안 하면서도 어떻게든 일이 다 끝나게 만드는 능력이다.)",
+                "If you can't explain it simply, you don't understand it well enough.\n   (단순하게 설명할 수 없다면, 그것을 충분히 이해하지 못한 것이다.)",
+                "Nobody actually creates new things. It's just a question of taking old ideas and putting them together in new ways.\n   (사실 아무도 완전히 새로운 것을 창조하지 않는다. 그저 옛날 아이디어들을 가져와 새로운 방식으로 결합할 뿐이다.)",
+                "I'm a lazy person, and I get credit for things other people did.\n   (나는 게으른 사람이고, 남들이 한 일로 공을 인정받고 있다.)"
+            ],
+            "answer": 2
+        }
+    ],
+    "best_score": 2
+}
