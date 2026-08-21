@@ -239,18 +239,23 @@ class QuizGame:
         print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
 
     def run(self):
-        while True:
-            self.show_menu()
-            choice = self.read_number("메뉴를 선택하세요: ", 1, 5)
+        try:
+            while True:
+                self.show_menu()
+                choice = self.read_number("메뉴를 선택하세요: ", 1, 5)
 
-            if choice == 1:
-                self.play()
-            elif choice == 2:
-                self.add_quiz()
-            elif choice == 3:
-                self.show_quiz_list()
-            elif choice == 4:
-                self.show_score()
-            elif choice == 5:
-                print("퀴즈 게임을 종료합니다.")
-                break
+                if choice == 1:
+                    self.play()
+                elif choice == 2:
+                    self.add_quiz()
+                elif choice == 3:
+                    self.show_quiz_list()
+                elif choice == 4:
+                    self.show_score()
+                elif choice == 5:
+                    print("퀴즈 게임을 종료합니다.")
+                    break
+        except (KeyboardInterrupt, EOFError):
+            print("\n입력이 중단되었습니다. 상태를 저장하고 종료합니다.")
+
+        self.save_state()
