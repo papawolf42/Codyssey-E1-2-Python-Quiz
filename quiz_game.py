@@ -117,6 +117,14 @@ class QuizGame:
         except FileNotFoundError:
             self.quizzes = self.create_default_quizzes()
             return
+        except json.JSONDecodeError:
+            print("저장 파일이 손상되어 기본 퀴즈로 시작합니다.")
+            self.quizzes = self.create_default_quizzes()
+            return
+        except OSError:
+            print("저장 파일을 읽을 수 없어 기본 퀴즈로 시작합니다.")
+            self.quizzes = self.create_default_quizzes()
+            return
 
         quizzes = []
 
@@ -147,8 +155,11 @@ class QuizGame:
             "best_score": self.best_score,
         }
 
-        with open("state.json", "w", encoding="utf-8") as file:
-            json.dump(state, file, ensure_ascii=False, indent=4)
+        try:
+            with open("state.json", "w", encoding="utf-8") as file:
+                json.dump(state, file, ensure_ascii=False, indent=4)
+        except OSError:
+            print("저장 파일을 쓸 수 없습니다.")
 
     def show_menu(self):
         print("\n=== 명언 퀴즈 ===")
