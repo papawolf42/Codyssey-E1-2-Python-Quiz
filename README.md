@@ -116,10 +116,28 @@ git log --oneline --graph --decorate --all
 
 ### clone과 pull 실습
 
-1. GitHub의 `main` 브랜치를 `/tmp/python-quiz-clone-proof`에 clone했습니다.
+1. GitHub 저장소를 `../Python-Quiz-copy`에 clone했습니다.
 2. 복제한 저장소에서 이 README를 수정하고 commit한 뒤 GitHub에 push했습니다.
-3. 기존 작업 저장소에서 `git pull --ff-only origin main`으로 README 변경을 가져왔습니다.
+3. 기존 작업 저장소에서 `git pull`로 README 변경을 가져왔습니다.
 4. pull 뒤 복제본과 기존 저장소의 최신 commit이 같은지 확인했습니다.
+
+아래는 복제본에서 push하고 기존 저장소에서 pull한 실행 기록입니다.
+
+```console
+papawolf8572@c6r3s3 Python-Quiz-copy % git push
+To https://github.com/papawolf42/Codyssey-E1-2-Python-Quiz.git
+   ffa3171..c17278f  main -> main
+
+papawolf8572@c6r3s3 Codyssey-E1-2-Python-Quiz % git pull
+From https://github.com/papawolf42/Codyssey-E1-2-Python-Quiz
+ * branch            main       -> FETCH_HEAD
+Updating ffa3171..c17278f
+Fast-forward
+ README.md | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+```
+
+복제본에서 만든 `c17278f`이 GitHub를 거쳐 기존 저장소의 pull 결과로 반영된 것을 확인했습니다.
 
 ## 실행 화면
 
