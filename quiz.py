@@ -7,8 +7,8 @@ class Quiz:
     def show(self):
         print(self.question)
 
-        for number, choice in enumerate(self.choices, start=1):
-            print(f"\n{number}. {choice}")
+        for num, choice in enumerate(self.choices, start=1):
+            print(f"\n{num}. {choice}")
 
     def is_correct(self, user_answer):
         return user_answer == self.answer

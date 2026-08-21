@@ -122,9 +122,9 @@ class QuizGame:
 
         score = 0
 
-        for number, quiz in enumerate(self.quizzes, start=1):
+        for num, quiz in enumerate(self.quizzes, start=1):
             print("\n" + "=" * 60)
-            print(f"문제 {number} / {len(self.quizzes)}")
+            print(f"문제 {num} / {len(self.quizzes)}")
             print("=" * 60)
             quiz.show()
 
@@ -151,8 +151,8 @@ class QuizGame:
         question = read_line("문제를 입력하세요: ")
         choices = []
 
-        for number in range(1, 5):
-            choice = read_line(f"{number}번 선택지를 입력하세요: ")
+        for num in range(1, 5):
+            choice = read_line(f"{num}번 선택지를 입력하세요: ")
             choices.append(choice)
 
         answer = read_number("정답 번호를 입력하세요: ", 1, 4)
@@ -160,6 +160,19 @@ class QuizGame:
         self.quizzes.append(quiz)
 
         print("새 퀴즈를 추가했습니다.")
+
+    def show_quiz_list(self):
+        if len(self.quizzes) == 0:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"\n=== 등록된 퀴즈 목록 (총 {len(self.quizzes)}개) ===")
+        print("-" * 60)
+
+        for num, quiz in enumerate(self.quizzes, start=1):
+            print(f"[{num}] {quiz.question}")
+
+        print("-" * 60)
 
     def show_score(self):
         if self.best_score is None:
@@ -178,7 +191,7 @@ class QuizGame:
             elif choice == 2:
                 self.add_quiz()
             elif choice == 3:
-                pass
+                self.show_quiz_list()
             elif choice == 4:
                 self.show_score()
             elif choice == 5:
