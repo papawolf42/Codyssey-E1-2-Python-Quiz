@@ -16,7 +16,7 @@ Python 터미널에서 실행하는 4지선다형 명언 퀴즈 게임입니다.
 
 ## 실행 환경
 
-- Python 3.11.13
+- Python 3.12.13
 - Python 표준 라이브러리 `json` 사용
 - 별도의 외부 패키지 설치 없음
 
@@ -55,6 +55,8 @@ python3 main.py
 ├── quiz.py          # Quiz 클래스
 ├── quiz_game.py     # QuizGame 클래스와 기본 퀴즈 데이터
 ├── state.json       # 퀴즈 목록과 최고 점수 저장
+├── assets/
+│   └── screenshots/ # 개발 환경과 실행 결과 이미지
 ├── .python-version  # Python 버전 지정
 └── README.md        # 프로젝트 설명
 ```
@@ -118,3 +120,29 @@ git log --oneline --graph --decorate --all
 2. 복제한 저장소에서 이 README를 수정하고 commit한 뒤 GitHub에 push했습니다.
 3. 기존 작업 저장소에서 `git pull --ff-only origin main`으로 README 변경을 가져왔습니다.
 4. pull 뒤 복제본과 기존 저장소의 최신 commit이 같은지 확인했습니다.
+
+## 실행 화면
+
+### 개발 환경
+
+![Python과 Git 버전 확인](assets/screenshots/dev_environment.png)
+
+### 퀴즈 추가
+
+![새 퀴즈 추가 결과](assets/screenshots/add_quiz.png)
+
+### 퀴즈 목록
+
+![등록된 퀴즈 목록](assets/screenshots/quiz_list.png)
+
+### 퀴즈 플레이
+
+![퀴즈 정답과 오답 확인](assets/screenshots/play_quiz.png)
+
+### 점수 확인
+
+![퀴즈 결과와 최고 점수](assets/screenshots/score.png)
+
+### Git 커밋과 병합 기록
+
+![Git 커밋 그래프](assets/screenshots/git_log_graph.png)
