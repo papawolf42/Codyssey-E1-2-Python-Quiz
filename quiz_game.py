@@ -73,19 +73,19 @@ class QuizGame:
             user_input = input(prompt).strip()
 
             if user_input == "":
-                print("아무것도 입력하지 않았습니다. 다시 입력해주세요.")
+                print(f"⚠️ 잘못된 입력입니다. {min}-{max} 사이의 숫자를 입력하세요.")
                 continue
 
             try:
                 num = int(user_input)
             except ValueError:
-                print("숫자를 입력해주세요.")
+                print(f"⚠️ 잘못된 입력입니다. {min}-{max} 사이의 숫자를 입력하세요.")
                 continue
 
             if min <= num <= max:
                 return num
 
-            print(f"{min}부터 {max} 사이의 숫자를 입력해주세요.")
+            print(f"⚠️ 잘못된 입력입니다. {min}-{max} 사이의 숫자를 입력하세요.")
 
     @staticmethod
     def read_line(prompt):
@@ -139,6 +139,14 @@ class QuizGame:
         self.quizzes = quizzes
         self.best_score = state["best_score"]
 
+        if self.best_score is None or len(self.quizzes) == 0:
+            score_text = "최고 점수 기록 없음"
+        else:
+            score = self.best_score * 100 // len(self.quizzes)
+            score_text = f"최고 점수 {score}점"
+
+        print(f"📂 저장된 데이터를 불러왔습니다. (퀴즈 {len(self.quizzes)}개, {score_text})")
+
     def save_state(self):
         quizzes_data = []
 
@@ -162,87 +170,93 @@ class QuizGame:
             print("저장 파일을 쓸 수 없습니다.")
 
     def show_menu(self):
-        print("\n=== 명언 퀴즈 ===")
+        print("\n" + "=" * 40)
+        print("       🎯 리누스 토발즈 명언 퀴즈 🎯")
+        print("=" * 40)
         print("1. 퀴즈 풀기")
         print("2. 퀴즈 추가")
         print("3. 퀴즈 목록")
         print("4. 점수 확인")
         print("5. 종료")
+        print("=" * 40)
 
     def play(self):
         if len(self.quizzes) == 0:
             print("등록된 퀴즈가 없습니다.")
             return
 
+        print(f"\n📝 퀴즈를 시작합니다! (총 {len(self.quizzes)}문제)")
         score = 0
 
         for num, quiz in enumerate(self.quizzes, start=1):
-            print("\n" + "=" * 60)
-            print(f"문제 {num} / {len(self.quizzes)}")
-            print("=" * 60)
+            print("\n" + "-" * 40)
+            print(f"[문제 {num}]")
             quiz.show()
 
-            user_answer = self.read_number("\n정답을 입력하세요: ", 1, 4)
+            user_answer = self.read_number("\n정답 입력: ", 1, 4)
 
             if quiz.is_correct(user_answer):
-                print("\n[정답] 맞았습니다!")
+                print("✅ 정답입니다!")
                 score += 1
             else:
-                print("\n[오답] 틀렸습니다.")
+                print("❌ 오답입니다.")
                 print(f"정답은 {quiz.answer}번입니다.")
                 print(f"\n{quiz.answer}. {quiz.choices[quiz.answer - 1]}")
 
+        score_percent = score * 100 // len(self.quizzes)
         print("\n" + "=" * 60)
-        print(f"결과: {len(self.quizzes)}문제 중 {score}문제를 맞혔습니다.")
-        print("=" * 60)
+        print(f"🏆 결과: {len(self.quizzes)}문제 중 {score}문제 정답! ({score_percent}점)")
 
         if self.best_score is None or score > self.best_score:
             self.best_score = score
-            print("새로운 최고 점수입니다!")
+            print("🎉 새로운 최고 점수입니다!")
+
+        print("=" * 60)
 
         self.save_state()
 
     def add_quiz(self):
-        print("\n=== 새 퀴즈 추가 ===")
+        print("\n📌 새로운 퀴즈를 추가합니다.\n")
         question = self.read_line("문제를 입력하세요: ")
         choices = []
 
         for num in range(1, 5):
-            choice = self.read_line(f"{num}번 선택지를 입력하세요: ")
+            choice = self.read_line(f"선택지 {num}: ")
             choices.append(choice)
 
-        answer = self.read_number("정답 번호를 입력하세요: ", 1, 4)
+        answer = self.read_number("정답 번호 (1-4): ", 1, 4)
         quiz = Quiz(question, choices, answer)
         self.quizzes.append(quiz)
         self.save_state()
 
-        print("새 퀴즈를 추가했습니다.")
+        print("\n✅ 퀴즈가 추가되었습니다!")
 
     def show_quiz_list(self):
         if len(self.quizzes) == 0:
             print("등록된 퀴즈가 없습니다.")
             return
 
-        print(f"\n=== 등록된 퀴즈 목록 (총 {len(self.quizzes)}개) ===")
-        print("-" * 60)
+        print(f"\n📋 등록된 퀴즈 목록 (총 {len(self.quizzes)}개)\n")
+        print("-" * 40)
 
         for num, quiz in enumerate(self.quizzes, start=1):
             print(f"[{num}] {quiz.question}")
 
-        print("-" * 60)
+        print("-" * 40)
 
     def show_score(self):
-        if self.best_score is None:
+        if self.best_score is None or len(self.quizzes) == 0:
             print("아직 퀴즈를 풀지 않았습니다.")
             return
 
-        print(f"최고 점수: {self.best_score} / {len(self.quizzes)}")
+        score = self.best_score * 100 // len(self.quizzes)
+        print(f"\n🏆 최고 점수: {score}점 ({len(self.quizzes)}문제 중 {self.best_score}문제 정답)")
 
     def run(self):
         try:
             while True:
                 self.show_menu()
-                choice = self.read_number("메뉴를 선택하세요: ", 1, 5)
+                choice = self.read_number("선택: ", 1, 5)
 
                 if choice == 1:
                     self.play()
