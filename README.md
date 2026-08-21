@@ -112,4 +112,9 @@ af4497e Merge: 퀴즈 플레이 기능 통합
 git log --oneline --graph --decorate --all
 ```
 
-`clone`과 `pull` 실습 기록은 최종 코드를 GitHub에 push한 뒤 실제 수행 결과를 추가합니다.
+### clone과 pull 실습
+
+1. GitHub의 `main` 브랜치를 `/tmp/python-quiz-clone-proof`에 clone했습니다.
+2. 복제한 저장소에서 이 README를 수정하고 commit한 뒤 GitHub에 push했습니다.
+3. 기존 작업 저장소에서 `git pull --ff-only origin main`으로 README 변경을 가져왔습니다.
+4. pull 뒤 복제본과 기존 저장소의 최신 commit이 같은지 확인했습니다.
