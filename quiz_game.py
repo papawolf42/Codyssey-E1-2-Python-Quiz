@@ -3,6 +3,9 @@ import json
 from quiz import Quiz
 
 
+POINT_PER_QUIZ = 10
+
+
 DEFAULT_QUIZZES = [
     {
         "question": "빌 게이츠의 발언을 찾으세요. 나머지는 리누스 토발즈의 발언입니다.",
@@ -142,8 +145,8 @@ class QuizGame:
         if self.best_score is None or len(self.quizzes) == 0:
             score_text = "최고 점수 기록 없음"
         else:
-            score = self.best_score * 100 // len(self.quizzes)
-            score_text = f"최고 점수 {score}점"
+            total_point = len(self.quizzes) * POINT_PER_QUIZ
+            score_text = f"최고 점수 {self.best_score}/{total_point}점"
 
         print(f"📂 저장된 데이터를 불러왔습니다. (퀴즈 {len(self.quizzes)}개, {score_text})")
 
@@ -197,15 +200,15 @@ class QuizGame:
 
             if quiz.is_correct(user_answer):
                 print("✅ 정답입니다!")
-                score += 1
+                score += POINT_PER_QUIZ
             else:
                 print("❌ 오답입니다.")
                 print(f"정답은 {quiz.answer}번입니다.")
                 print(f"\n{quiz.answer}. {quiz.choices[quiz.answer - 1]}")
 
-        score_percent = score * 100 // len(self.quizzes)
+        total_point = len(self.quizzes) * POINT_PER_QUIZ
         print("\n" + "=" * 60)
-        print(f"🏆 결과: {len(self.quizzes)}문제 중 {score}문제 정답! ({score_percent}점)")
+        print(f"🏆 결과: {score // POINT_PER_QUIZ}문제 정답! ({score}/{total_point}점)")
 
         if self.best_score is None or score > self.best_score:
             self.best_score = score
@@ -249,8 +252,8 @@ class QuizGame:
             print("아직 퀴즈를 풀지 않았습니다.")
             return
 
-        score = self.best_score * 100 // len(self.quizzes)
-        print(f"\n🏆 최고 점수: {score}점 ({len(self.quizzes)}문제 중 {self.best_score}문제 정답)")
+        total_point = len(self.quizzes) * POINT_PER_QUIZ
+        print(f"\n🏆 최고 점수: {self.best_score}/{total_point}점")
 
     def run(self):
         try:
